@@ -1,0 +1,56 @@
+.content {
+	left: 10px;
+	width: calc(100% - 20px);
+}
+
+/******** Projects list ********/
+.project-item {
+	border-radius: 5px;
+	border: 1px solid #DDD;
+	background-color: #CCC;
+	padding: 5px;
+	margin: 10px 0;
+}
+
+.project-title {
+	font-size: 20px;
+}
+
+.project-files-btn {
+	float: right;
+	font-size: 60px;
+	text-decoration: none;
+	position: relative;
+	top: -67px;
+	color: 0;
+}
+
+/********** Files list **********/
+.file-project-name {
+	display: block;
+	font-size: 30px;
+}
+
+.file-project-name a {
+	text-decoration: none;
+	font-size: 40px;
+	color: 0;
+}
+
+.file-list tbody tr:first-child {
+	border-bottom: 1px solid #CCC;
+}
+.file-list tbody tr:nth-child(even) {
+	background-color: #ECECEC;
+}
+.file-list {
+	border-spacing: 0;
+	width: 100%;
+}
+.file-list th {
+	text-align: left;
+}
+.file-list a {
+	text-decoration: none;
+	color: black;
+}

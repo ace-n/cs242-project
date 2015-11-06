@@ -1,0 +1,56 @@
+/**************** Generic site ****************/
+body {
+	font-family: sans-serif;
+}
+a {
+	text-decoration: none;
+}
+
+/******************* Navbar *******************/
+.navbar {
+	background-color: #000;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	height: 30px;
+	font-size: 20px;
+}
+
+.navbar > a {
+	display: inline-block;
+	padding: 0 10px;
+	cursor: hand;
+	vertical-align: sub; /* For non-Webkit browsers */
+	vertical-align: -webkit-baseline-middle;
+	padding-bottom: 3px;
+	text-decoration: none;
+	color: #FFF;
+}
+.navbar > a:hover {
+	border-bottom: 3px solid #0CD;
+	padding-bottom: 0px;
+}
+
+/******************** Content ******************/
+.content {
+	padding-top: 30px;
+	text-align: center;
+}
+
+/******************** Buttons ******************/
+.btn-grn {
+	background-color: #0E0;
+	border: 1px solid #0C0;
+}
+
+.btn-blu {
+	background-color: #0CA;
+	border: 1px solid #0B9;
+}
+
+.btn-med {
+	color: #FFF;
+	border-radius: 2px;
+	padding: 5px;
+}

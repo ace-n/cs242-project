@@ -1,0 +1,47 @@
+<html>
+	<head>
+		<!-- Title -->
+		<title>{% block title %}{% endblock %}</title>
+
+		<!-- Global CSS/JS -->
+		<link rel="stylesheet" href="/static/css/global.css" />
+		<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+		<script type="text/javascript" src="/static/js/comments.js"></script>
+
+		<!-- Local CSS/JS -->
+		{% block static_resources %}
+		{% endblock %}
+
+		<!-- Global JS variables -->
+		<script type="text/javascript">
+			{% if comment_filter %}
+				window.page_filter = "{{ comment_filter }}";
+				window.comments = {{ comments|safe }};
+			{% endif %}
+		</script>
+	</head>
+	<body>
+		<!-- Navbar -->
+		<div class="navbar">
+			<a href="/">Home</a>
+			<a href="/project/list">SVN</a>
+		</div>
+
+		<div class="content">
+			{% block content %}
+			{% endblock %}
+
+			<!-- Comment form -->
+			{% if comment_filter %}
+				<div id="comments">
+					<span class="comment-header">Comments</span>
+				</div>
+				<div id="comment-form">
+					<textarea placeholder="Write a comment..."></textarea>
+					<button id="comment-btn">Submit</button>
+				</div>
+			{% endif %}
+
+		</div>
+	</body>
+</html>
