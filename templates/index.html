@@ -7,7 +7,14 @@
 {% block content %}
 <h1>Welcome to the CS242 discussion scheduling app!</h1>
 
-<a class="btn-med btn-grn" href="/auth/login">Log in</a>
-<a class="btn-med btn-blu" href="/auth/reset_password">Reset password</a>
-<a class="btn-med btn-blu" href="/auth/reset_authcode">Resend authcode</a>
+{% if not session.user_id %}
+	<a class="btn-med btn-grn" href="/auth/password">Log in</a>
+	<a class="btn-med btn-blu" href="/auth/reset_password">Reset password</a>
+	<a class="btn-med btn-blu" href="/auth/reset_authcode">Resend authcode</a>
+{% elif session.is_passworded %}
+	<a class="btn-med btn-blu" href="/sections/manage">Manage sections</a>
+{% else %}
+	<a class="btn-med btn-grn" href="/sections/pick">Pick sections</a>
+{% endif %}
+
 {% endblock %}

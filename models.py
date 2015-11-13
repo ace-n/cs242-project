@@ -1,11 +1,19 @@
 from peewee import *
+#from peewee import create_model_tables
+#create_model_tables([PasswordUser])
 
 class BaseModel(Model):
 	class Meta:
-		database = MySQLDatabase("cs242-discussions", user="root", password="")
+		database = MySQLDatabase("cs242_discussions", user="root", password="")
 
+class Section(BaseModel):
+	weekday = CharField(max_length=10)
+	time = CharField(max_length=10)
+
+# Abstract model, should never be instantiated
 class User(BaseModel):
 	email = CharField(max_length=256)
+	section = ForeignKeyField(Section, null=True, default=None)
 
 class PasswordUser(User):
 	salted_hash = CharField(max_length=256)
@@ -13,9 +21,3 @@ class PasswordUser(User):
 
 class AuthcodeUser(User):
 	authcode = CharField(max_length=256)
-
-class DiscussionSection(BaseModel):
-	weekday = CharField(max_length=10)
-	time = CharField(max_length=10)
-	moderator = ForeignKey(PasswordUser)
-	students = ManyToManyField(AuthcodeUser)

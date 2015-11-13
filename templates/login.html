@@ -9,13 +9,15 @@
 {% block content %}
 <h1>Staff Login</h1>
 
-<input class="large" type="text" placeholder="Username"></input>
-<input class="large" type="text" placeholder="Password" type="password"></input>
+<form method="post">
+	<input name="username" class="large" type="text" placeholder="Username"></input>
+	<input name="password" class="large" type="text" placeholder="Password" password="password"></input>
 
-<div class="right-btns">
-<button method="post" type="submit" class="btn-med btn-grn">Submit</button>
-<a method="post" type="submit" class="btn-med btn-grn" href="/auth/reset_password">Reset password</a>
-</div>
+	<div class="right-btns">
+	<button type="submit" class="btn-med btn-grn">Submit</button>
+	<a class="btn-med btn-grn" href="/auth/reset_password">Reset password</a>
+	</div>
+</form>
 
 <p class="students-warning">Students: login via your email'ed auth link. Go <a href="/auth/reset_authcode">here</a> if you forgot it.</p>
 
