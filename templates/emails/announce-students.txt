@@ -1,0 +1,9 @@
+<p>Hello and welcome to CS242!</p>
+
+<p>To schedule your discussion sections, click <a href="{{ link }}">here</a> and enter your preferences <em>within the next 7 days</em>.</p>
+
+<p>Please do this to ensure we avoid conflicting with your other classes. (If you don't, you will be assigned a random section.)</p>
+
+<p>If you have any questions, feel free to post on <a href="https://piazza.com">Piazza</a> or contact a TA.</p>
+
+<p>Thanks,<br \>CS242Bot</p>

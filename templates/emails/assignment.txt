@@ -1,0 +1,11 @@
+<p>Hello,</p>
+
+<p>You have been assigned the following discussion section:</p>
+
+<p>{{ s.weekday }} @ {{ s.time }}</p>
+
+<p>Your section moderator should be following up with you shortly.</p>
+
+<p>If this time does not work for you, please make a private post on Piazza or contact a member of course staff.</p>
+
+<p>Thanks,<br \>CS242Bot</p>
