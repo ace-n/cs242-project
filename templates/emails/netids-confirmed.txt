@@ -1,0 +1,9 @@
+<p>Hello,
+
+<p>Here is the list of NetIDs entered at {{ time }} by <a href="mailto:{{ moderator.email }}">{{ moderator.email }}</a>.</p>
+
+{% for n in netids %}
+	<p>{{ n }}</p>
+{% endfor %}
+
+<p>Thanks,<br />CS242Bot</p>

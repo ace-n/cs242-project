@@ -13,3 +13,9 @@ class PasswordUser(User):
 
 class AuthcodeUser(User):
 	authcode = CharField(max_length=256)
+
+class DiscussionSection(BaseModel):
+	weekday = CharField(max_length=10)
+	time = CharField(max_length=10)
+	moderator = ForeignKey(PasswordUser)
+	students = ManyToManyField(AuthcodeUser)

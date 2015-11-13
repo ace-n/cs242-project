@@ -25,5 +25,23 @@ def reset_authcode():
 def home():	
 	return render_template('index.html')
 
+# Pick sections
+@app.route('/sections/pick')
+def pick_sections():
+	return render_template('pick-sections.html')
+
+# Add a section via AJAX
+@app.route('sections/add', methods=["POST"])
+	return "Not yet implemented"
+
+# Delete a section via AJAX
+@app.route('sections/delete', methods=["POST"])
+	return "Not yet implemented"
+
+# Edit a section via AJAX
+@app.route('sections/edit', methods=["POST"])
+	return "Not yet implemented"
+
+
 if __name__ == '__main__':
 	app.run(debug=True, host='0.0.0.0')
