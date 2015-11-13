@@ -1,0 +1,14 @@
+.content {
+	width: 800px;
+}
+
+.students-warning {
+	color: #F00;
+	padding-top: 5px;
+}
+
+.right-btns {
+	margin: 10px 0;
+	float: right;
+	width: 100%;
+}

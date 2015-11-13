@@ -36,6 +36,7 @@ a {
 .content {
 	padding-top: 30px;
 	text-align: center;
+	margin: 0 auto;
 }
 
 /******************** Buttons ******************/
@@ -52,5 +53,15 @@ a {
 .btn-med {
 	color: #FFF;
 	border-radius: 2px;
-	padding: 5px;
+	padding: 4px;
+	font-size: 16px;
+}
+
+/***************** Oversized inputs *************/
+input.large {
+	border-radius: 3px;
+	border: 1px solid #CCC;
+	font-size: 30px;
+	width: 100%;
+	margin-top: 3px;
 }
