@@ -1,4 +1,7 @@
 .content {
 	width: 481px;
+}
+h1 {
+	font-weight: inherit;
 	font-size: 25px;
 }

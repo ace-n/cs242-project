@@ -9,8 +9,7 @@
 
 {% if not session.user_id %}
 	<a class="btn-med btn-grn" href="/auth/password">Log in</a>
-	<a class="btn-med btn-blu" href="/auth/reset_password">Reset password</a>
-	<a class="btn-med btn-blu" href="/auth/reset_authcode">Resend authcode</a>
+	<a class="btn-med btn-blu" href="/auth/reset">Can't log in?</a>
 {% elif session.is_passworded %}
 	<a class="btn-med btn-blu" href="/sections/manage">Manage sections</a>
 {% else %}

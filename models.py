@@ -18,6 +18,7 @@ class User(BaseModel):
 class PasswordUser(User):
 	salted_hash = CharField(max_length=256)
 	salt = CharField(max_length=256)
+	password_reset_token = CharField(max_length=256)
 
 class AuthcodeUser(User):
 	authcode = CharField(max_length=256)

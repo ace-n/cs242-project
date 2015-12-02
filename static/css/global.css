@@ -39,6 +39,10 @@ a {
 	margin: 0 auto;
 }
 
+.content-error {
+	color: red;
+}
+
 /******************** Buttons ******************/
 .btn-grn {
 	background-color: #0E0;

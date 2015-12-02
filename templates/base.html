@@ -6,7 +6,6 @@
 		<!-- Global CSS/JS -->
 		<link rel="stylesheet" href="/static/css/global.css" />
 		<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-		<script type="text/javascript" src="/static/js/comments.js"></script>
 
 		<!-- Local CSS/JS -->
 		{% block static_resources %}
@@ -24,10 +23,11 @@
 		<!-- Navbar -->
 		<div class="navbar">
 			<a href="/">Home</a>
-			<a href="/project/list">SVN</a>
 
 			{% if session.user_id %}
 				<a href="/auth/logout">Logout</a>
+			{% else %}
+				<a href="/auth/password">Login</a>
 			{% endif %}
 		</div>
 
