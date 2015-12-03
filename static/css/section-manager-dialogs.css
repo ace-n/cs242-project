@@ -1,0 +1,44 @@
+.section-dialog {
+
+/* Centering code from http://css-tricks.com/centering-percentage-widthheight-elements */
+	transform: translate(-50%, -50%);
+	position: absolute;
+	top: 50%;
+	left: 50%;
+
+	/* Standard attributes */
+	width: 20%;
+	padding: 10px;
+	border-radius: 5px;
+	border: 1px solid #AAA;
+	background-color: #CCC;
+
+	/* Avoid the blur */
+	z-index: 1;
+}
+
+/* Gaussian blur (for when the dialog is active) */
+.blur {
+	-webkit-filter: blur(2px);
+	-moz-filter: blur(2px);
+	filter: blur(2px);
+	z-index: -1;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+
+.dialog-inputs input {
+	margin-bottom: 7px;
+	border-radius: 5px;
+	border: 1px solid #AAA;
+	font-size: 20px;
+	padding: 2px;
+	width: 100%;
+}
+
+.dialog-buttons .btn-med ~ .btn-med {
+	margin-top: 7px;
+}

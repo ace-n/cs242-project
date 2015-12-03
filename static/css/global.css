@@ -54,11 +54,17 @@ a {
 	border: 1px solid #0B9;
 }
 
+.btn-red {
+	background-color: #D66;
+	border: 1px solid #B66;
+}
+
 .btn-med {
 	color: #FFF;
 	border-radius: 2px;
 	padding: 4px;
 	font-size: 16px;
+	cursor: hand;
 }
 
 /***************** Oversized inputs *************/

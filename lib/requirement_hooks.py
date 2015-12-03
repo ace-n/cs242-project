@@ -5,8 +5,12 @@ from flask import redirect, abort, session, request
 
 # Require a valid CSRF token on a non-GET request
 def requireCSRFToken():
-	if request.method != 'GET' and session.get('csrf_token', 'a') != request.form.get('csrf_token', 'b'):
-		abort(500)
+	if request.method != 'GET':
+		client_token = request.form.get('csrf_token', None)
+		if not client_token:
+			client_token = request.values.get('csrf_token', None)
+		if not client_token or client_token != session.get('csrf_token', 'BAD'):
+			abort(500)
 
 # Require a passwordUser
 def requirePasswordedUser():
