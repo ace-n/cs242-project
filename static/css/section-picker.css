@@ -1,0 +1,23 @@
+.section-day {
+	font-size: 18px;
+}
+
+.section-details {
+	display: inline-flex;
+	font-size: 14px;
+}
+.section-details select {
+	margin-left: 5px;
+	font-size: 10px;
+	position: relative;
+	top: 2px;
+}
+
+.section-list {
+	text-align: left;
+	margin-left: 20px;
+}
+
+em {
+	font-weight: bold;
+}

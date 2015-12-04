@@ -5,6 +5,8 @@
 
 		<!-- Global CSS/JS -->
 		<link rel="stylesheet" href="/static/css/global.css" />
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 		<script type="text/javascript">
 			var csrfToken = "{{ session.csrf_token }}";
 			var rootUrl = document.domain;
@@ -14,14 +16,6 @@
 		<!-- Local CSS/JS -->
 		{% block static_resources %}
 		{% endblock %}
-
-		<!-- Global JS variables -->
-		<script type="text/javascript">
-			{% if comment_filter %}
-				window.page_filter = "{{ comment_filter }}";
-				window.comments = {{ comments|safe }};
-			{% endif %}
-		</script>
 	</head>
 	<body>
 		<!-- Navbar -->
@@ -44,18 +38,6 @@
 
 			{% block content %}
 			{% endblock %}
-
-			<!-- Comment form -->
-			{% if comment_filter %}
-				<div id="comments">
-					<span class="comment-header">Comments</span>
-				</div>
-				<div id="comment-form">
-					<textarea placeholder="Write a comment..."></textarea>
-					<button id="comment-btn">Submit</button>
-				</div>
-			{% endif %}
-
 		</div>
 	</body>
 </html>

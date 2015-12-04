@@ -1,7 +1,6 @@
 from models import AuthcodeUser, PasswordUser 
-from flask import Blueprint, Flask, redirect, abort, session, render_template, request
+from flask import Blueprint, Flask, session, redirect, render_template, request
 from local_settings import SECRET_KEY
-from lib.requirement_hooks import *
 
 app = Flask(__name__)
 app.secret_key = SECRET_KEY
@@ -9,8 +8,10 @@ app.secret_key = SECRET_KEY
 # Include various views
 from auth_views import auth_views
 from section_views import section_views
+from user_views import user_views
 app.register_blueprint(auth_views)
 app.register_blueprint(section_views)
+app.register_blueprint(user_views)
 
 # Homepage
 @app.route('/')

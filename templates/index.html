@@ -12,6 +12,7 @@
 	<a class="btn-med btn-blu" href="/auth/reset">Can't log in?</a>
 {% elif session.is_passworded %}
 	<a class="btn-med btn-blu" href="/sections/manage">Manage sections</a>
+	<a class="btn-med btn-blu" href="/users/manage">Manage users</a>
 {% else %}
 	<a class="btn-med btn-grn" href="/sections/pick">Pick sections</a>
 {% endif %}

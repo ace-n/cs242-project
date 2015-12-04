@@ -4,37 +4,89 @@ window.onload = function() {
 	$(".section-dialog").hide();
 
 	// On-cancel logic
-	$("#BUTTON_CANCEL").click(function() {
+	$(".BUTTON_CANCEL").click(function() {
 
 		// Hide dialogs
-		$("#DIALOG_ADD_EDIT").hide()
+		$(".dialog").hide();
 
 		// Clear inputs
 		$("input").each(function() {
 			$(this).val("");
 		});
-
-		// Clear dialog events
-		$("#BUTTON_SAVE").off("click");
 	});
 
 	// Show the "Add Section" dialog
 	$("#ADD_SECTION").click(function() {
-		$("#DIALOG_ADD_EDIT").show();
-		$(".dialog_title").text("Add Section");
 
-		// Do 
-		$("#BUTTON_SAVE").on("click.add", function() {
-			console.log("save!");
-			$.ajax({
-				method: "POST",
-				url: "/sections/add",
-				data: {
-					csrf_token: csrfToken,
-					day: $("input[name=day]").val(),
-					time: $("input[name=time]").val(),
-				}
-			});
+		// Update UI/variable state
+		$("#DIALOG_ADD_EDIT").show();
+		$(".dialog-title").text("Add Section");
+		window.section_id = null;
+	});
+
+
+	// Show the "Edit Section" dialog
+	$(".action-edit").click(function() {
+
+		// Update UI state
+		$("#DIALOG_ADD_EDIT").show();
+		$(".dialog-title").text("Edit Section");
+
+		// Update input values
+		$("input[name=weekday]").val($(this).attr("data-weekday"));
+		$("input[name=time]").val($(this).attr("data-time"));
+		window.section_id = $(this).attr("data-id");
+	});
+
+	// Show the "Delete Confirmation" dialog on delete request
+	$(".action-delete").click(function() {
+		$("#DIALOG_DELETE").show();
+		window.section_id = $(this).attr("data-id");
+	});
+
+	// On-Delete (post confirmation) logic
+	$("#BUTTON_DELETE").click(function() {
+		$(".dialog").hide();
+		$.ajax({
+			method: "POST",
+			url: "/sections/delete",
+			data: {
+				csrf_token: csrfToken,
+				id: window.section_id,
+			},
+		}).done(function(response) {
+			var status = JSON.parse(response);
+			if (status["status"] == 200) {
+				// Success
+				$(".section-details[data-id=" + window.section_id + "]").remove();
+			} else {
+				// Failure
+				alert("ERROR: " + status["message"]);
+			}
+		});
+	});
+
+	// On-Save (post confirmation) logic for add/edit
+	$("#BUTTON_SAVE").click(function() {
+		$(".dialog").hide()
+		$.ajax({
+			method: "POST",
+			url: "/sections/change",
+			data: {
+				csrf_token: csrfToken,
+				id: window.section_id,
+				weekday: $("input[name=weekday]").val(),
+				time: $("input[name=time]").val(),
+			}
+		}).done(function(response) {
+			var status = JSON.parse(response);
+			if (status["status"] == 200) {
+				// Success
+				// TODO update id here
+			} else {
+				// Failure
+				alert("ERROR: " + status["message"]);
+			}
 		});
 	});
 };

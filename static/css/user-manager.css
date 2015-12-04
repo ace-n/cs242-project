@@ -1,0 +1,23 @@
+.user-email {
+	display: inline-flex;
+}
+.user-item .action-delete {
+	color: #C00;
+	cursor: hand;
+}
+
+.user-item:hover {
+	color: #09C;
+}
+.add-user {
+	color: #0C0;
+	cursor: hand;
+}
+
+.user-list-header {
+	font-size: 18px;
+}
+.user-list {
+	margin-bottom: 14px;
+}
+

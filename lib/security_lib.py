@@ -15,5 +15,6 @@ def hash_password(password, salt):
 
 # Securely generate a token (random, unique string)
 # @param length The length of the token characters
-def secure_token(length = 256):
+DEFAULT_TOKEN_LENGTH = 256
+def secure_token(length = DEFAULT_TOKEN_LENGTH):
 	return "".join([rand.choice(string.hexdigits) for _ in range(length)])

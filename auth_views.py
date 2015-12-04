@@ -4,9 +4,9 @@ Views responsible for authentication-related tasks (login/logout/passwords/authc
 from lib.email_lib import Mail
 from lib.security_lib import hash_password, secure_token
 from lib.requirement_hooks import *
-
+from lib.misc import json_status
 from models import AuthcodeUser, PasswordUser 
-from flask import Blueprint, redirect, abort, session, render_template, request
+from flask import Blueprint, redirect, session, render_template, request
 from local_settings import ROOT_DOMAIN
 
 auth_views = Blueprint('auth_views', __name__, template_folder='templates')
@@ -89,7 +89,11 @@ def reset_password():
 
 		# Check for user
 		if not pw_query.exists():
-			abort(410)
+			return json_status(410, "Invalid token.")
+
+		# Require long-enough reset token
+		if len(token) != DEFAULT_TOKEN_LENGTH:
+			return json_status(410, "Invalid token.")
 
 		# Get user + construct password reset page
 		user = pw_query.get()
@@ -110,7 +114,7 @@ def reset_password():
 		# Get user	
 		user_query = PasswordUser.select().where(PasswordUser.id == session['reset_id'])
 		if not user_query.exists():
-			abort(500)
+			return json_status(500, "No matching user.")
 		user = user_query.get()
 
 		# Validate requested password
@@ -163,7 +167,7 @@ def login_password():
 def login_authcode():
 
 	# Get authcode
-	authcode = request.args.get('code', None)
+	authcode = request.args.get('token', None)
 	if not authcode:
 		return redirect('/auth/reset')
 	

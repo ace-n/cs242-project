@@ -1,13 +1,13 @@
-.section-dialog {
+.dialog {
 
-/* Centering code from http://css-tricks.com/centering-percentage-widthheight-elements */
+	/* Centering code from http://css-tricks.com/centering-percentage-widthheight-elements */
 	transform: translate(-50%, -50%);
 	position: absolute;
 	top: 50%;
 	left: 50%;
 
 	/* Standard attributes */
-	width: 20%;
+	width: 280px;
 	padding: 10px;
 	border-radius: 5px;
 	border: 1px solid #AAA;
@@ -41,4 +41,10 @@
 
 .dialog-buttons .btn-med ~ .btn-med {
 	margin-top: 7px;
+}
+
+.dialog-title {
+	font-size: 19px;
+	position: relative;
+	top: -5px;
 }
