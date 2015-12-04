@@ -15,16 +15,18 @@
 
 <div class="section-list">
 	{% for day in section_days %}
-		<div class="section-day">{{ day }}</div>
-		{% for section in section_days[day] %}
-			<div class="section-details" data-id="{{ section.id }}">
-				{{ section.time }}
-				<div class="section-actions">
-					<i class="fa fa-edit action-edit" data-id="{{ section.id }}" data-weekday="{{ day }}" data-time="{{ section.time }}"></i>
-					<i class="fa fa-remove action-delete" data-id="{{ section.id }}"></i>
+		<div class="section-day" data-day="{{ day }}">
+			<div class="section-header">{{ day }}</div>
+			{% for section in section_days[day] %}
+				<div class="section-details" data-id="{{ section.id }}">
+					{{ section.time }}
+					<div class="section-actions">
+						<i class="fa fa-edit action-edit" data-id="{{ section.id }}" data-weekday="{{ day }}" data-time="{{ section.time }}"></i>
+						<i class="fa fa-remove action-delete" data-id="{{ section.id }}"></i>
+					</div>
 				</div>
-			</div>
-		{% endfor %}
+			{% endfor %}
+		</div>
 	{% endfor %}
 </div>
 

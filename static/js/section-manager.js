@@ -69,20 +69,32 @@ window.onload = function() {
 	// On-Save (post confirmation) logic for add/edit
 	$("#BUTTON_SAVE").click(function() {
 		$(".dialog").hide()
+		var weekday = $("input[name=weekday]").val();
+		var time = $("input[name=time]").val();
 		$.ajax({
 			method: "POST",
 			url: "/sections/change",
 			data: {
 				csrf_token: csrfToken,
 				id: window.section_id,
-				weekday: $("input[name=weekday]").val(),
-				time: $("input[name=time]").val(),
+				weekday: weekday,
+				time: time,
 			}
 		}).done(function(response) {
 			var status = JSON.parse(response);
 			if (status["status"] == 200) {
-				// Success
-				// TODO update id here
+				// Success - insert new section into page
+
+				// Construct new section
+				var new_id = status["message"];
+				var c_icon1 = "<i class='fa fa-edit action-edit' data-id='" + new_id + "' data-weekday='" + weekday + "' data-time='" + time + "'></i>";
+				var c_icon2 = "<i class='fa fa-remove action-delete' data-id='" + new_id + "'></i>";
+				var c_actions = "<div class='section-actions'>" + c_icon1 + c_icon2 + "</div>";
+
+				var c_details = '<div class="section-details" data-id="' + new_id + '">' + time + c_actions + "</div>";
+
+				// Append new section into page
+				$(".section-day[data-day='" + weekday + "']").append(c_details);
 			} else {
 				// Failure
 				alert("ERROR: " + status["message"]);

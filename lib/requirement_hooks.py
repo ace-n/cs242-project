@@ -10,14 +10,21 @@ def requireCSRFToken():
 		if not client_token:
 			client_token = request.values.get('csrf_token', None)
 		if not client_token or client_token != session.get('csrf_token', 'BAD'):
-			abort(500)
+			abort(400)
 
 # Require a passwordUser
 def requirePasswordedUser():
+	requireUser()
 	if not session.get('is_passworded', False):
-		redirect('/auth/password')
+		abort(403)
+
+# Require an authcodeUser
+def requireAuthcodeUser():
+	requireUser()
+	if session.get('is_passworded', False):
+		abort(403)
 
 # Require any user
 def requireUser():
-	if not session.get('user_id', None):
-		redirect('/auth/password')
+	if session.get('user_id', None) is None:
+		abort(401)

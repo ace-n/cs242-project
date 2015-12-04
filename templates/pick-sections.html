@@ -3,7 +3,6 @@
 {% block title %}Section preferences{% endblock %}
 
 {% block static_resources %}
-<script src="/static/js/section-picker.js" type="text/javascript"></script>
 <link rel="stylesheet" href="/static/css/section-picker.css"></link>
 {% endblock %}
 
@@ -15,6 +14,7 @@
 </div>
 
 <form method="POST">
+	<input type="hidden" name="csrf_token" value="{{ session.csrf_token }}"></input>
 	<div class="section-list">
 		{% for day in section_days %}
 			<div class="section-day">{{ day }}</div>
@@ -22,7 +22,7 @@
 				<div class="section-details" data-id="{{ section.id }}">
 					{{ section.time }}
 					<div class="section-rating">
-						<select>
+						<select name="rating{{ section.id }}">
 							{% for i in range(11) %}
 								<option value="{{ i }}" {% if i==1 %}selected{% endif %}>{{ i }}</option>
 							{% endfor %}

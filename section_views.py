@@ -4,16 +4,16 @@ Views responsible for section-related tasks (adding/editing/deleting/picking sec
 import calendar
 from lib.requirement_hooks import *
 from lib.misc import json_status
-from models import Section 
+from models import * 
 from flask import Blueprint, redirect, session, render_template, request
 from local_settings import ROOT_DOMAIN
 from collections import OrderedDict
 
 section_views = Blueprint('section_views', __name__, template_folder='templates')
 
-# Pick sections
-@section_views.route('/sections/pick')
-def pick_sections():
+# Show list of pickable sections
+@section_views.route('/sections/pick', methods=['GET'])
+def pick_sections_list():
 	requireUser()
 	requireCSRFToken()
 
@@ -24,6 +24,30 @@ def pick_sections():
 		section_days[s.weekday].append(s)
 
 	return render_template('pick-sections.html', session=session, section_days=section_days)
+
+# Record a student's picks for a section
+@section_views.route('/sections/pick', methods=['POST'])
+def pick_sections_record():
+	requireUser()
+	requireAuthcodeUser()
+	requireCSRFToken()
+
+	# Get user
+	user = AuthcodeUser.select().where(AuthcodeUser.id==session['user_id']).get()
+
+	# Delete current user's existing ratings
+	for x in user.section_ratings:
+		x.delete_instance()
+
+	# Get section data
+	sections = Section.select()
+	for section in sections:
+		rating = request.form.get('rating' + str(section.id), 1)
+		usr = UserSectionRating(user=user, section=section, rating=1)
+		usr.save()
+
+	# Done!
+	return render_template('pick-thanks.html', session=session)
 
 # [ADMIN] Manage sections
 @section_views.route('/sections/manage')
